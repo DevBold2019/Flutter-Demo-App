@@ -9,15 +9,24 @@ import './questions.dart';
 class Questions extends StatelessWidget{
 
   String questions;
-
-
+  
   //by using this.questions we set the questions to the questions string variables
   Questions(this.questions);
 
   @override
   Widget build(BuildContext context) {
 
-    return Text(questions);
+    //container has a child in this case its a text
+    //styling the text
+    return Container(
+      //infinity gives width according to the widgets in the container
+      width:double.infinity,
+      margin: EdgeInsets.all(10),
+      child:Text(questions, style:
+    TextStyle(fontSize: 30),
+      textAlign:TextAlign.center,
+    ),
+    );
   }
 
 
