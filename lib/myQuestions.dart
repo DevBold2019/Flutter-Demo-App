@@ -27,9 +27,9 @@ class Maswali extends StatelessWidget{
       ),
       //three dots spread operator ;takes all the list and pulls values from list
       //add to the surrounding as individual value
-      ...(questions[questionIndex] ['answers'] as List<String>).map((answer){
+      ...(questions[questionIndex] ['answers'] as List<Map<String,Object>>).map((answer){
 
-        return Answer(answerThequiz,answer);
+        return Answer(() => answerThequiz(answer['score'],),answer['text']);
       }).toList(),
 
     ],

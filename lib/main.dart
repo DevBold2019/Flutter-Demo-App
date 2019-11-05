@@ -1,11 +1,13 @@
 import 'dart:wasm';
 
 import 'package:flutter/material.dart';
+import 'package:movie_shop/myResult.dart';
 import 'package:movie_shop/questions.dart';
 
 import './answer.dart';
 import './questions.dart';
 import './myQuestions.dart';
+import './myAnswers.dart';
 /*
 void main(){
   //runs the application so we pass the method with our widgets
@@ -23,33 +25,55 @@ class MyDemoApp extends StatefulWidget {
 //This function changes the app into a stateful widget
 class MyDemoAppState extends State<MyDemoApp> {
 
+  var totalScore=0;
   var questions=[
     //Using maps Maps()
 
     //Question 1
     {
       'Question':'What is your favorite movie',
-      'answers':['Expandables','Drunken Master','Naked weapon'],
-    },
+      'answers':[
+
+      {'text':'Expandables','score':10},
+      {'text': 'Drunken Master','score':10},
+      {'text':'Naked weapon','score':10},
+
+      ],
+      },
 
     //Question 2
     {
       'Question':'Whose your favorite actor',
-      'answers':['Scarlet Johnson','Lupita Nyóngo','Samuel Jackson'],
-    },
+      'answers':[
+
+      {'text':'Scarlet Johnson','score':10},
+      {'text':'Lupita Nyóngo','score':10},
+      {'text': 'Samuel Jackson','score':10},
+
+      ],//end of answers
+      },
 
     //Question 3
     {
       'Question': 'Which  type of movies do you like?',
-      'answers':['Animation Movies','Action Movies','Drama Movies'],
-    },
+      'answers':[
+
+        {'text':'Animation Movies','score':10},
+        {'text':'Action Movies','score':10},
+        {'text':'Drama Movies','score':10},
+
+        ],
+        },
 
 ];
 
   var quizIndex=0;
 
-  void answers(){
+  void answers(int score){
 
+    totalScore = totalScore + score;
+    //or
+    //totalScore += score;
 
     setState(() {
 
@@ -67,11 +91,23 @@ class MyDemoAppState extends State<MyDemoApp> {
     print(quizIndex);
 
   }
+
+
+
+  void resetQuiz(){
+
+    setState(() {
+      quizIndex=0;
+      totalScore=0;
+    });
+
+
+  }
+
   @override
   Widget build( BuildContext context) {
 
     //lists are created by square brackets
-
 
     //takes home arguments which flutter is what will display on the screen
     //A comma after parathensis allows the IDE to format in a readable form
@@ -91,7 +127,7 @@ class MyDemoAppState extends State<MyDemoApp> {
       //if statement
       quizIndex< questions.length ?
       Maswali(questions:questions , answerThequiz:answers, questionIndex:quizIndex)
-    : Center(child: Text('No more questions'),),
+    : Result(totalScore,resetQuiz),
 
     )
     );
